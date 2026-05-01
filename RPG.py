@@ -1,14 +1,15 @@
 # Importando Biblioteca
 import random
 
-#
-
 # Dado de Testes
-def teste(acao, defesa, dado):
+def teste(acao, defesa):
     d20 = random.randint(1, 20)
     if acao.lower() == 'ataque' or acao.lower() == 'especial':
         if d20 > defesa:
-            dano = random.randint(1, dado)
+            if arma == 'adaga':
+                dano = random.randint(1, dado) + Agi
+            else:
+                dano = random.randint(1, dado) + For
     elif acao.lower() == 'cura':
         if d20 > 12:
             pv += 5
@@ -27,7 +28,7 @@ while True:
 Vig, For, Int, Agi, Pre = map(int, input('Agora é hora de distribuir seus 4 pontos de atributo entre Vigor (PV), Força (Dano), Intelecto (Dano Mágico), Agilidade (Dano Ágil) e Presença (PE) lembre-se que o máximo de cada atributo é 3. ').split())
 
 while True:
-    arma = input('Entre Adaga (Arma Ágil), Espada (Arma Comum) e Martelo (arma tática), qual é sua arma? ')
+    arma = input('Entre Adaga (Arma Ágil), Espada (Arma Comum) e Marreta (arma tática), qual é sua arma? ')
     arma = arma.lower()
     if arma == 'adaga':
         dado = 4
@@ -35,9 +36,9 @@ while True:
     elif arma == 'espada':
         dado = 6
         break
-    elif arma == 'martelo':
+    elif arma == 'marreta':
         if classe == 'especialista':
-            dado = 12
+            dado = 8
             break
         else:
             print('Você não tem proficiência em armas táticas, não pode usar um martelo.')
