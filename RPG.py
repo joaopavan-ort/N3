@@ -204,7 +204,7 @@ while True:
 
     print('')
     print('---= CAPÍTULO 1: RICHARD =---')                                                                                                                                         
-    print(f'Você, um(a) {classe} até que bem reconhecido(a), recebe um alto sinal de elemento do Conhecimento de uma cidade próxima. Você se dirige em alta velocidade até lá e encontra um homem que acaba de se tornar um existido, um homem com nível de exposição ao Paranormal em 100%. O existido continua repetindo o nome "Richard", e você não sabe porque. Você acessa uma enciclopédia de monstros que guarda em seu inventário e descobre que o existido fica sussurando seu antigo nome repetidamente, na tentativa de ser reconhecido, lembrado. Por sorte, você descobre que o existido, só ataca aqueles que o atacam.')
+    print(f'Você, um(a) {classe} até que bem reconhecido(a), recebe um alto sinal de elemento do Conhecimento de uma cidade próxima. Você se dirige em alta velocidade até lá e encontra um homem que acaba de se tornar um existido, um homem com nível de exposição ao Paranormal em 100%. O existido continua repetindo o nome "Richard", e você não sabe porque. Você acessa uma enciclopédia de monstros que guarda em seu inventário e descobre que o existido fica sussurrando seu antigo nome repetidamente, na tentativa de ser reconhecido, lembrado. Por sorte, você descobre que o existido, só ataca aqueles que o atacam.')
     print()
     time.sleep(1)
 
@@ -216,12 +216,12 @@ while True:
             print('')
             print('---= Combate =---')
             combate = True
-            round = 1
+            rodada = 1
             defesa = 13
             pvM = 36
             dadoM = 4
             nomeM = 'existido'
-            fraseM = 'susurrar o próprio nome o deixa sem fôlego'
+            fraseM = 'sussurrar o próprio nome o deixa sem fôlego'
             fraseM2 = 'Seus pecados rastejam pelas suas costas e deixam seu golpe mais lento'
             fraseMM = 'Você foi derrotado por um simples existido e se pergunta se realmente era forte'
             fraseMM2 = 'Talvez tenha sido azar, ou você nunca deveria ter ido àquela cidade'
@@ -232,7 +232,7 @@ while True:
             final = '---= FINAL: Fraco entre os fracos =---'
 
             while combate:
-                print('Rodada:', round)
+                print('Rodada:', rodada)
                 print('PV:', pv, '            PV Inimigo:', pvM)
                 print('PE:', pe)
                 while True:
@@ -244,7 +244,7 @@ while True:
                         pv, pe, pvM = teste(pv, pe, pvM)
                         pv = monstro(pv)
                         time.sleep(2)
-                        round += 1
+                        rodada += 1
                         print('--------------------------------------')
                         combate = check()
                         break #the code
