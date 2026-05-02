@@ -35,7 +35,9 @@ def check():
         morte()
         return False
     elif pvM <= 0:
-        print(f'Com um último ataque, você finalmente derrota o {nomeM}')
+        print('Em um momento de pura adrenalina e emoção...')
+        time.sleep(0.5)
+        print(f'{nome}, acerta o pescoço do {nomeM} com sua {arma}, decapitando o monstro!')
         print(fraseV)
         print(fraseV2)
         print(fraseV3)
@@ -49,7 +51,7 @@ def monstro(pvF):
         if d20 + 5 >= esq:
             dano = random.randint(1, dadoM) + 5
             pvF -= dano
-            print(f'O {nomeM} carregou sua energia de conhecimento e te acertou com um soco, causando {dano} de dano!')
+            print(f'O {nomeM} carregou o punho com seu elemento de conhecimento e te acertou com um soco, causando {dano} de dano!')
         else:
             print(f'O {nomeM} foi lento demais, {fraseM}, abrindo a brecha para desviar! ')
         return pvF
@@ -161,6 +163,8 @@ while True:
                 print(f'Valor inválido, ainda existem {7 - soma} pontos a serem distribuidos!')
             elif Vig > 3 or For > 3 or Int > 3 or Agi > 3:
                 print('Valor inválido, algum de seus atributos excede o máximo de 3 pontos por atributo!')
+            elif Vig < 0 or For < 0 or Int < 0 or Agi < 0:
+                print('Valor inválido, algum de seus atributos não atende o mínimo de 0 pontos!')
             else:
                 pv += 4 * Vig
                 pe += 4 * Agi
@@ -252,7 +256,7 @@ while True:
                         print('Ação inválida, escolha atacar ou especial')
             cap1 = False
             if pv > 0:
-                print('---= CAPÍTULO 2: EM BREVE =---')
+                input('---= CAPÍTULO 2: EM BREVE =---')
                 sys.exit()
 
 
@@ -276,7 +280,7 @@ while True:
                     print('Na foto a mãe parece estar segurando um bebê, mas não há nenhum bebê')
                     print('Ao ver a foto, a mãe começa a chorar')
                     print('"Richard", ela diz, enquanto começa a aparecer um bebê na foto.')
-                    print('Quando você olha para o existido, toda a energia paranormal de conhecimento começa a ser rejeitada pelo seu corpo e sai voando pelo céu.')
+                    print('Quando você olha para o existido, toda o elemento paranormal de conhecimento começa a ser rejeitada pelo seu corpo e sai voando pelo céu.')
                     print('No lugar do existido, aparece um homem. Richard havia voltado a existir!')
                     print('')
                     print('---= CAPÍTULO 2: EM BREVE =---')
