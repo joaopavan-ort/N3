@@ -17,8 +17,7 @@ def morte():
             print('.')
             print('')
             time.sleep(2.5)
-            stop = False
-            break #the code
+            break
         elif rec.upper() == 'N':
             print('A sua aventura acabou')
             sys.exit()
@@ -115,8 +114,7 @@ def teste(pvF, peF, pvMF):
 while True:
     input('Bem vindo ao Ordem Salustial, um RPG baseado no sistema "Ordem Paranormal". Clique enter para começar a criação de personagem.')
     print('')  
-    stop = True
-    while stop:
+    while True:
         print('---= Criação de Personagem =---')
         nome = input('Qual o seu nome? ')
         nome = nome.capitalize()
@@ -197,13 +195,12 @@ while True:
         while True:
             rep = input('É assim que você irá começar sua jornada? (S/N) ')
             if rep.upper() == 'S':
-                stop = False
                 break #the code
             elif rep.upper() == 'N':
                 break #the code 
             else:
                 print('Resposta inválida, responda S ou N!')
-
+        break
 
     print('')
     print('---= CAPÍTULO 1: RICHARD =---')                                                                                                                                         
@@ -227,7 +224,7 @@ while True:
             fraseM = 'susurrar o próprio nome o deixa sem fôlego'
             fraseM2 = 'Seus pecados rastejam pelas suas costas e deixam seu golpe mais lento'
             fraseMM = 'Você foi derrotado por um simples existido e se pergunta se realmente era forte'
-            fraseMM2 = 'Talvez foi um golpe de azar e você nunca deveria ter ido para aquela cidade'
+            fraseMM2 = 'Talvez tenha sido azar, ou você nunca deveria ter ido àquela cidade'
             fraseV = 'Você se sente satisfeito pelas suas ações, agora todos viverão em paz e tranquilos'
             fraseV2 = 'O povo em volta do incidente aplaude e alguns deles gritam "Bom trabalho!!"'
             fraseV3 = 'Mesmo assim, um leve sentimento cresce em você, o sentimento de que você perdeu algo...'
@@ -253,6 +250,10 @@ while True:
                         break #the code
                     else:
                         print('Ação inválida, escolha atacar ou especial')
+            cap1 = False
+            if pv > 0:
+                print('---= CAPÍTULO 2: EM BREVE =---')
+                sys.exit()
 
 
         elif dec1 == 'esperar':
