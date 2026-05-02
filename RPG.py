@@ -19,10 +19,10 @@ def morte():
             time.sleep(2.5)
             break
         elif rec.upper() == 'N':
-            print('A sua aventura acabou')
+            input('A sua aventura acabou, até a próxima...')
             sys.exit()
         else:
-            print('Resposta inválida, responda sim ou não!')
+            print('Resposta inválida, responda S ou N!')
 
 def check():
     if pv <= 0:
