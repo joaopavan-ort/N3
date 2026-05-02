@@ -215,7 +215,7 @@ while True:
     while cap1:
         dec1 = (input("Você tem que decidir entre atacá-lo ou esperar por uma chance de salvá-lo. O que você fará? (lutar ou esperar) "))
         if dec1  == 'lutar':
-            print('Você decide lutar contra o existido antes de pensar em qualquer possiblidade, não consgue ver aquela criatura tão horrenda na sua frente. Você sente que está se tornando impiedoso, mas que está fazendo a coisa certa!')
+            print('Você decide lutar contra o existido antes de pensar em qualquer possiblidade, não consgue ver aquela criatura tão horrenda na sua frente. Você sente que está se tornando impiedoso, mas que está fazendo a coisa certa, você precisa restaurar a membrana!')
             print('')
             print('---= Combate =---')
             combate = True
@@ -236,7 +236,7 @@ while True:
 
             while combate:
                 print('Rodada:', round)
-                print('PV:', pv, '            PV Inimigo:', pvM )
+                print('PV:', pv, '            PV Inimigo:', pvM)
                 print('PE:', pe)
                 while True:
                     acao = input(f'Você irá "atacar" o {nomeM} ou usar seu golpe "especial"? ')
@@ -256,7 +256,7 @@ while True:
 
 
         elif dec1 == 'esperar':
-            print('Você pensa um pouco no que você vai fazer para tentar ajudar o existido a existir')
+            print('Você pensa um pouco no que você vai fazer para tentar ajudar o existido a existir.')
             print('Você vê uma senhora com uma vassoura prestes a atacar o existido e uma outra senhora tentando pará-la')
             print('A senhora que está segurando a outra diz:')
             print('-Ele estava saindo da minha casa!! Quem é esse homem e porque eu estava comprando comida pra duas pessoas se eu moro sozinha??')
@@ -285,4 +285,3 @@ while True:
                     print('Não tem isso na casa!!')
         else:
             print(f'{dec1} não é uma decisão válida!')
-            
