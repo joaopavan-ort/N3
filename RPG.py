@@ -35,8 +35,8 @@ def check(pv, pvM, final):
         time.sleep(0.5)
         print(f'{nomeM} usou suas últimas forçar para deferir um golpe final...')
         print(f'{nome} não consegue esquivar a tempo e é morto pelo monstro, mas pelo menos você salvou a cidade, e pode descansar em paz.')
-        print('Derrota')
         final = '---= FINAL: Honrado e Derrotado =---'
+        print(final)
         reset()
     elif pv <= 0:
         time.sleep(1.5)
@@ -84,10 +84,10 @@ def ataque(pvM):
         return pvM
 
 def esquiva(esq, pvM):
-    esq += 7
+    esq += Agi + 7
     print(f'{nome} foca em desviar dos golpes do {nomeM}, mas dessa forma não poderá atacar com tanta força...')
     d20 = random.randint(1, 20)
-    if d20 + Agi - 2 >= defesa:
+    if d20 + (2 * Agi) - 2 >= defesa:
         if atrB == Agi:
             dano = random.randint(1, dado) + Agi
             pvM -= dano 
@@ -349,7 +349,6 @@ while True:
                             print('"NÃO OUSE DELETAR MEU SAVE!!!"')
                         print('')
                         time.sleep(2)
-                        print('Derrota')
                         final = '---= FINAL: Espancado e Fracassado =---'
                         print(final)
                         reset()
@@ -363,7 +362,6 @@ while True:
                         print('No lugar do existido, aparece um homem. Richard havia voltado a existir!')
                         print('')
                         time.sleep(2)
-                        print('Vitória')
                         print('---= CAPÍTULO 2: EM BREVE =---')
                         reset()
                     cap1 = False
