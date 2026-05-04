@@ -276,7 +276,7 @@ while True:
     cap1 = True
     while cap1:
         dec1 = (input("Você tem que decidir entre atacá-lo ou esperar por uma chance de salvá-lo. O que você fará? (lutar ou esperar) "))
-        if dec1  == 'lutar':
+        if dec1.lower()  == 'lutar':
             print('Você decide lutar contra o existido antes de pensar em qualquer possiblidade, não consgue ver aquela criatura tão horrenda na sua frente. Você sente que está se tornando impiedoso, mas que está fazendo a coisa certa, você precisa restaurar a membrana!')
             print('')
             print('---= Combate =---')
@@ -302,7 +302,7 @@ while True:
                 input('---= CAPÍTULO 2: EM BREVE =---')
                 reset()
 
-        elif dec1 == 'esperar':
+        elif dec1.lower() == 'esperar':
             print('')
             input('Você pensa um pouco no que você vai fazer para tentar ajudar o existido a existir. (enter para continuar)')
             input('Você vê uma senhora com uma vassoura prestes a atacar o existido e uma outra senhora tentando pará-la... (enter para continuar)')
