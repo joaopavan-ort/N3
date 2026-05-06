@@ -64,7 +64,7 @@ def check(pv, pvM, final):
 def monstro(pv, acao):
         d20 = random.randint(1, 20)
         if d20 + 5 > esq:
-            dano = random.randint(1, dadoM) + 5 #9
+            dano = random.randint(1, dadoM) + 5 #6 9
             if acao == 'esquivar':
                 dano -= 3
             pv -= dano
@@ -76,9 +76,9 @@ def monstro(pv, acao):
 def ataque(pvM):
         d20 = random.randint(1, 20)
         if d20 + atrB >= defesa:
-            dano = random.randint(1, dado) + atrB #11
+            dano = random.randint(1, dado) + atrB #4 11
             pvM -= dano
-            if atrB == 'Agi':
+            if arma == 'adaga':
                 print(f'Você corta o {nomeM} rapidamente, causando {dano} de dano!')
             else:
                 print(f'Você acerta o {nomeM} com força, causando {dano} de dano!')
@@ -92,8 +92,8 @@ def esquiva(esq, pvM, pe):
     print(f'{nome} foca em desviar dos golpes do {nomeM}, mas dessa forma não poderá atacar com tanta força...')
     time.sleep(1)
     d20 = random.randint(1, 20)
-    if d20 + (2 * Agi) - 2 >= defesa: #24
-        if atrB == 'Agi':
+    if d20 + (2 * Agi) - 2 >= defesa: #13 24
+        if arma == 'adaga':
             dano = random.randint(1, dado) #1 4
             pvM -= dano 
         else:
@@ -110,11 +110,13 @@ def cura(pv):
         pv += pvc
         print(f'Richard se aproxima e trata seus ferimentos antes que seja tarde, você recebe +{pvc}!')
         return pv
+
+        #somente no capítulo 2
 ''' 
 def especial(pe, pv, pvM):
     if classe == 'combatente':
         pe -= 3
-        if atrB == 'Agi':
+        if arma == 'adaga':
             dano = random.randint(1, dado) + Agi + 5 #9 12
             pvM -= dano
             print(f'Você dilacera o {nomeM} com sua {arma} executando diversos cortes ágeis, causando {dano} de dano no inimigo!')
@@ -125,7 +127,7 @@ def especial(pe, pv, pvM):
     
     elif classe == 'especialista':
         pe -= 3
-        if atrB == 'Agi':
+        if arma == 'adaga':
             dano = random.randint(1, dado) + Agi + random.randint(1, 8) #5 15
             pvM -= dano
         else:
@@ -138,7 +140,7 @@ def especial(pe, pv, pvM):
         dano = random.randint(1, 2 * Int) + random.randint (1, 2 * Int) + random.randint (1, 2 * Int) + Int #6 21
         pvM -= dano
         print(f'Você invoca o paranormal, conjurando raios que atacam o {nomeM} de forma agressiva, causando {dano} de dano!')
-        if random.randint(1, 20) + Int < 16: #1/3
+        if random.randint(1, 20) + Int < 16: #1/5
             pv -= 3
             print(f'O paranormal é selvagem e agressivo, ao conjurar o ritual ele te ataca antes de ser dominado, causando 3 de dano!')
     return pe, pv, pvM
@@ -236,16 +238,16 @@ while True:
             arma = input('Entre Adaga (Arma Ágil), Clava (Arma Simples) e Espada (Arma Tática), qual é sua arma? ')
             arma = arma.lower()
             if arma == 'adaga':
-                atrB = 'Agi'
+                atrB = Agi
                 dado = 4
                 break
             elif arma == 'clava':
-                atrB = 'For'
+                atrB = For
                 dado = 6
                 break
             elif arma == 'espada':
                 if classe == 'especialista':
-                    atrB = 'For'
+                    atrB = For
                     dado = 8
                     break
                 else:
@@ -330,37 +332,37 @@ while True:
                     print('')
                     if dec2.lower() == 'mesa' or dec2.lower() == 'gato' or dec2.lower() == 'controle':
                         if dec2.lower() == 'mesa':
-                            print(f'{nome} começa a investigar mesa, mas o existido percebe e fica muito irritado...')
+                            print(f'Você pega duas cadeiras com dois pratos de comida e leva até a mãe. Ao sair da casa, uma das senhoras já havia atacado o existido e deixado ele bravo')
                             time.sleep(1.5)
-                            print('Ele solta um clarão, que te deixa tonto, o derrubando no chão...')
+                            print('A mãe exclama "PORQUE VOCÊ ROUBOU A MINHA COMIDA E A DA VISITA?!?!"')
                             time.sleep(1.5)
-                            print('Ele te espanca, sem dó nem piedade, até a morte, sem te dar chance de revidar...')
+                            print('Quando percebe, o existido já estava atrás de você, te chutando e te jogando no chão')
                             time.sleep(1.5)
-                            print('Enquanto espera o seu fim, uma frase se repete em sua mente, é o existido falando com você por meio do elemento do conhecimento:')
+                            print('Ele te espanca até que você não consiga mais pensar em nada além de dor.')
                             time.sleep(1.5)
-                            print('"ESSA COMIDA É MINHA!!!"')
+                            print('Antes de morrer, você se pergunta se merecia o reconhecimento que tinha, apesar de ser tão imbecil')
 
                         elif dec2.lower() == 'gato':
-                            print(f'{nome} se aproxima do gato estendendo a mão, oferecendo carinho, mas ao observar, o existido fica furioso...')
+                            print(f'Você se aproxima do gato e o leva até a mãe. Ao sair da casa, uma das senhoras já havia atacado o existido e deixado ele bravo')
                             time.sleep(1.5)
-                            print('Ele solta um clarão, que te deixa tonto, o derrubando no chão...')
+                            print('A mãe exclama "O QUE QUE O GARFIELD ESTÁ FAZENDO AQUI AGORA?!?!"')
                             time.sleep(1.5)
-                            print('Ele te espanca, sem dó nem piedade, até a morte, sem te dar chance de revidar...')
+                            print('Quando percebe, o existido já estava atrás de você, te chutando e te jogando no chão')
                             time.sleep(1.5)
-                            print('Enquanto espera o seu fim, uma frase se repete em sua mente, é o existido falando com você por meio do elemento do conhecimento:')
+                            print('Ele te espanca até que você não consiga mais pensar em nada além de dor.')
                             time.sleep(1.5)
-                            print('"NÃO TOCA NO GARFIELD!!!"')
+                            print('Antes de morrer, você se pergunta se merecia o reconhecimento que tinha, apesar de ser tão imbecil')
 
                         elif dec2.lower() == 'controle':
-                            print(f'{nome} pega o controle, tentando observar mais claramente, mas ao avistá-lo, o existido fica enraivecido...')
+                            print(f'Você pega o controle e o leva até a mãe. Ao sair da casa, uma das senhoras já havia atacado o existido e deixado ele bravo')
                             time.sleep(1.5)
-                            print('Ele solta um clarão, que te deixa tonto, o derrubando no chão...')
+                            print('A mãe exclama "EU NÃO TENHO TEMPO PRA JOGAR AGORA, PODE JOGAR, SÓ NÃO APAGA MEU SAVE!!"')
                             time.sleep(1.5)
-                            print('Ele te espanca, sem dó nem piedade, até a morte, sem te dar chance de revidar...')
+                            print('Quando percebe, o existido já estava atrás de você, te chutando e te jogando no chão')
                             time.sleep(1.5)
-                            print('Enquanto espera o seu fim, uma frase se repete em sua mente, é o existido falando com você por meio do elemento do conhecimento:')
+                            print('Ele te espanca até que você não consiga mais pensar em nada além de dor.')
                             time.sleep(1.5)
-                            print('"NÃO OUSE DELETAR MEU SAVE!!!"')
+                            print('Antes de morrer, você se pergunta se merecia o reconhecimento que tinha, apesar de ser tão imbecil')
                         print('')
                         time.sleep(2)
                         final = '---= FINAL: Espancado e Fracassado =---'
