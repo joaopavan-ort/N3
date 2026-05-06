@@ -1,3 +1,5 @@
+#explicar conceitos do jogo, mostrar os valores do dado para o jogador
+
 # Importando Bibliotecas
 import random
 import time
@@ -285,6 +287,7 @@ while True:
     time.sleep(1)                                                                                                                                
     input(f'Você, um(a) {classe} até que bem reconhecido(a), recebe um alto sinal de elemento do Conhecimento de uma cidade próxima. Você se dirige em alta velocidade até lá e encontra um homem que acaba de se tornar um existido, um ser humano com nível de exposição ao Paranormal em 100%. (enter para continuar)')
     input('O existido continua repetindo o nome "Richard", e você não sabe porque. Você acessa uma enciclopédia de monstros que guarda em seu inventário e descobre que o existido fica sussurrando seu antigo nome repetidamente, na tentativa de ser reconhecido, lembrado. Por sorte, você descobre que o existido, só ataca aqueles que o atacam. (enter para continuar)')
+    print('')
 
     cap1 = True
     while cap1:
