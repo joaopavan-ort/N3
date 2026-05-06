@@ -1,4 +1,4 @@
-# Importando Biblioteca
+# Importando Bibliotecas
 import random
 import time
 import sys
@@ -19,7 +19,8 @@ def reset():
             time.sleep(1.5)
             break
         elif rec.upper() == 'N':
-            input('A sua aventura acabou, até a próxima...')
+            print('A sua aventura acabou, até a próxima...')
+            time.sleep(3)
             sys.exit()
         else:
             print('Resposta inválida, responda S ou N!')
@@ -33,7 +34,7 @@ def check(pv, pvM, final):
         time.sleep(1)
         print('Porém...')
         time.sleep(0.5)
-        print(f'{nomeM} usou suas últimas forçar para deferir um golpe final...')
+        print(f'O {nomeM} usou suas últimas forçar para deferir um golpe final...')
         print(f'{nome} não consegue esquivar a tempo e é morto pelo monstro, mas pelo menos você salvou a cidade, e pode descansar em paz.')
         final = '---= FINAL: Honrado e Derrotado =---'
         print(final)
@@ -60,10 +61,12 @@ def check(pv, pvM, final):
     else:
         return True
 
-def monstro(pv):
+def monstro(pv, acao):
         d20 = random.randint(1, 20)
-        if d20 + 5 >= esq:
-            dano = random.randint(1, dadoM) + 5
+        if d20 + 5 > esq:
+            dano = random.randint(1, dadoM) + 5 #9
+            if acao == 'esquivar':
+                dano -= 3
             pv -= dano
             print(f'O {nomeM} carregou o punho com seu elemento de conhecimento e te acertou com um soco, causando {dano} de dano!')
         else:
@@ -73,9 +76,9 @@ def monstro(pv):
 def ataque(pvM):
         d20 = random.randint(1, 20)
         if d20 + atrB >= defesa:
-            dano = random.randint(1, dado) + Agi
+            dano = random.randint(1, dado) + atrB #11
             pvM -= dano
-            if atrB == Agi:
+            if atrB == 'Agi':
                 print(f'Você corta o {nomeM} rapidamente, causando {dano} de dano!')
             else:
                 print(f'Você acerta o {nomeM} com força, causando {dano} de dano!')
@@ -83,22 +86,24 @@ def ataque(pvM):
             print(f'Seu golpe foi fraco demais, o {nomeM} resiste como se não fosse nada!')
         return pvM
 
-def esquiva(esq, pvM):
-    esq += Agi + 7
+def esquiva(esq, pvM, pe):
+    pe -= 1
+    esq += Agi + 7 #10
     print(f'{nome} foca em desviar dos golpes do {nomeM}, mas dessa forma não poderá atacar com tanta força...')
+    time.sleep(1)
     d20 = random.randint(1, 20)
-    if d20 + (2 * Agi) - 2 >= defesa:
-        if atrB == Agi:
-            dano = random.randint(1, dado) + Agi
+    if d20 + (2 * Agi) - 2 >= defesa: #24
+        if atrB == 'Agi':
+            dano = random.randint(1, dado) #1 4
             pvM -= dano 
         else:
-            dano = random.randint(1, dado - 2)
+            dano = random.randint(1, dado - 2) #1 6
             pvM -= dano
         print(f'Você desvia com maestria dos golpes do {nomeM} e encontra uma abertura, você ataca rapidamente causando {dano} de dano!')
     else:
             print(f'Você realiza manobras evasivas, mas não encontra uma brecha para atacar o {nomeM}')
-    time.sleep(1)
-    return esq, pvM
+    time.sleep(2)
+    return esq, pvM, pe
 '''
 def cura(pv):
         pvc = random.randint(1, 8) + random.randint(1, 8) + 2
@@ -108,41 +113,41 @@ def cura(pv):
 ''' 
 def especial(pe, pv, pvM):
     if classe == 'combatente':
-        pe -= peCost
-        if arma == 'adaga':
-            dano = random.randint(1, dado) + Agi + 5
+        pe -= 3
+        if atrB == 'Agi':
+            dano = random.randint(1, dado) + Agi + 5 #9 12
             pvM -= dano
             print(f'Você dilacera o {nomeM} com sua {arma} executando diversos cortes ágeis, causando {dano} de dano no inimigo!')
         else:
-            dano = random.randint(1, dado) + For + 5
+            dano = random.randint(1, dado) + For + 5 #9 14
             pvM -= dano 
             print(f'Você acerta {nomeM} com sua {arma}, golpeando ele com toda sua força, causando {dano} de dano no inimigo!')
     
     elif classe == 'especialista':
-        pe -= peCost
-        if arma == 'adaga':
-            dano = random.randint(1, dado) + Agi + random.randint(1, 6)
+        pe -= 3
+        if atrB == 'Agi':
+            dano = random.randint(1, dado) + Agi + random.randint(1, 8) #5 15
             pvM -= dano
         else:
-            dano = random.randint(1, dado) + For + random.randint(1, 6)
+            dano = random.randint(1, dado) + For + random.randint(1, 6) #5 17
             pvM -= dano
         print(f'Você usa sua manobras táticas para se esgueirar até o {nomeM} e atacá-lo com sua {arma}, causando {dano} de dano!')
     
     elif classe == 'ocultista':
-        pe -= peCost
-        dano = random.randint(1, 6) + random.randint (1, 6) + random.randint (1, 6)
+        pe -= 3
+        dano = random.randint(1, 2 * Int) + random.randint (1, 2 * Int) + random.randint (1, 2 * Int) + Int #6 21
         pvM -= dano
         print(f'Você invoca o paranormal, conjurando raios que atacam o {nomeM} de forma agressiva, causando {dano} de dano!')
-        if random.randint(1, 20) + Int < 16:
-            pv -= peCost
-            print(f'O paranormal é selvagem e agressivo, ao conjurar o ritual ele te ataca antes de ser dominado, causando {peCost} de dano!')
+        if random.randint(1, 20) + Int < 16: #1/3
+            pv -= 3
+            print(f'O paranormal é selvagem e agressivo, ao conjurar o ritual ele te ataca antes de ser dominado, causando 3 de dano!')
     return pe, pv, pvM
 
 def luta(combate, rodada, pv, pe, pvM, esq, final):
     while combate:
                 print('Rodada:', rodada)
                 print('PV:', pv, '            PV Inimigo:', pvM)
-                print('PE:', pe)
+                print('PE:', pe, '            Defesa Inimiga', defesa)
                 while True:
                     acao = input(f'Você irá "atacar" o {nomeM}, usar seu golpe "especial" ou "esquivar" e tentar fazer um contra-ataque? ')
                     if acao.lower() == 'atacar' or acao.lower() == 'especial' or acao.lower() == 'esquivar':
@@ -150,16 +155,16 @@ def luta(combate, rodada, pv, pe, pvM, esq, final):
                         if acao.upper() == 'ATACAR':
                             pvM = ataque(pvM)
                         elif acao.upper() == 'ESPECIAL':
-                            if pe < peCost:
-                                print(f'Você não tem os PE necessários para usar seu especial! ({pe}/{peCost})')
+                            if pe < 3:
+                                print(f'Você não tem os PE necessários para usar seu especial! ({pe}/3)')
                             else:
                                 pe, pv, pvM = especial(pe, pv, pvM)
                         elif acao.upper() == 'ESQUIVAR':
-                            esq, pvM = esquiva(esq, pvM) 
+                            esq, pvM, pe = esquiva(esq, pvM, pe) 
 
-                        pv = monstro(pv)
+                        pv = monstro(pv, acao)
                         if acao.lower() == 'esquivar':
-                            esq -= 7
+                            esq -= Agi + 7
                         time.sleep(2)
                         rodada += 1
                         print('--------------------------------------')
@@ -172,7 +177,7 @@ def luta(combate, rodada, pv, pe, pvM, esq, final):
 
 # Criação de Personagem
 while True:
-    input('Bem vindo ao Ordem Salustial, um RPG baseado no sistema de RPG "Ordem Paranormal". Clique enter para começar a criação de personagem.')
+    input('Bem vindo ao Ordem Python, um RPG baseado no sistema de RPG "Ordem Paranormal". Clique enter para começar a criação de personagem.')
     print('')
     criacao = True
     while criacao:
@@ -187,28 +192,25 @@ while True:
                 poder = 'rituais'
                 pv = 18
                 pe = 16
-                peCost = 2
                 break
             elif classe.upper() == 'C':
                 classe = 'combatente'
                 poder = 'punhos rápidos'
                 pv = 32
                 pe = 8
-                peCost = 2
                 break
             elif classe.upper() == 'E':
                 classe = 'especialista'
                 poder = 'instintos e habilidades táticas'
                 pv = 25
                 pe = 12
-                peCost = 2
                 break
             else:
                 print(f'{classe} não é uma classe válida!')
 
         while True:
             print('Agora é hora de distribuir seus 7 pontos de atributo entre Vigor (PV), Força (Dano), ' \
-            'Intelecto (Dano Mágico), Agilidade (PE + Esquiva), lembre-se que o máximo de cada atributo é 3:')
+            'Intelecto (Dano de Rituais), Agilidade (PE + Esquiva), lembre-se que o máximo de cada atributo é 3:')
             time.sleep(0.5)
             Vig = int(input('Vig: '))
             For = int(input('For: '))
@@ -234,16 +236,16 @@ while True:
             arma = input('Entre Adaga (Arma Ágil), Clava (Arma Simples) e Espada (Arma Tática), qual é sua arma? ')
             arma = arma.lower()
             if arma == 'adaga':
-                atrB = Agi
+                atrB = 'Agi'
                 dado = 4
                 break
             elif arma == 'clava':
-                atrB = For
+                atrB = 'For'
                 dado = 6
                 break
             elif arma == 'espada':
                 if classe == 'especialista':
-                    atrB = For
+                    atrB = 'For'
                     dado = 8
                     break
                 else:
@@ -269,15 +271,24 @@ while True:
                 print('Resposta inválida, responda S ou N!')
 
     print('')
-    print('---= CAPÍTULO 1: RICHARD =---')                                                                                                                                         
+    input('Nosso mundo é dividido em duas partes, a realidade lógica, como conhecemos, e o mundo paranormal, repleto de criaturas monstruosas, que não respeitam as leis da realidade e vão além do imaginável, caso essas criaturas cheguem ao nosso plano existencial, elas irão destruir tudo. (enter para continuar)')
+    print('')
+    input('Para a nossa sorte, existe uma espécie de barreira invisível, que nos protege do paranormal e de seus elementos, a Membrana, porém essa barreira pode ser danificada e até destruída. Em locais com altos índices de medo, a Membrana se enfraquece, permitindo a chegada de criaturas paranormais, monstros esses que geram mais medo, danificando ainda mais a membrana... até chegarmos no fim do mundo. (enter para continuar)')
+    print('')
+    input('Com o objetivo de impedir o fim da nossa realidade, diversas organizações foram criadas afim de impedir atividades paranormais, como a "Ordo Realitas", ou no seu caso, a Ordem Python, sua missão como agente da ordem é impedir o avanço da atividade paranormal para manter a Membrana saudável, salvando o mundo! (enter para continuar)')
+    print('')
+    print('')
+    time.sleep(0.5)
+    print('---= CAPÍTULO 1: RICHARD =---')   
+    time.sleep(1)                                                                                                                                
     input(f'Você, um(a) {classe} até que bem reconhecido(a), recebe um alto sinal de elemento do Conhecimento de uma cidade próxima. Você se dirige em alta velocidade até lá e encontra um homem que acaba de se tornar um existido, um ser humano com nível de exposição ao Paranormal em 100%. (enter para continuar)')
     input('O existido continua repetindo o nome "Richard", e você não sabe porque. Você acessa uma enciclopédia de monstros que guarda em seu inventário e descobre que o existido fica sussurrando seu antigo nome repetidamente, na tentativa de ser reconhecido, lembrado. Por sorte, você descobre que o existido, só ataca aqueles que o atacam. (enter para continuar)')
 
     cap1 = True
     while cap1:
-        dec1 = (input("Você tem que decidir entre atacá-lo ou esperar por uma chance de salvá-lo. O que você fará? (lutar ou esperar) "))
+        dec1 = (input("Você tem que decidir entre atacá-lo ou observar a situação. O que você fará? (lutar ou esperar) "))
         if dec1.lower()  == 'lutar':
-            print('Você decide lutar contra o existido antes de pensar em qualquer possiblidade, não consgue ver aquela criatura tão horrenda na sua frente. Você sente que está se tornando impiedoso, mas que está fazendo a coisa certa, você precisa restaurar a membrana!')
+            print('Você decide lutar contra o existido antes de pensar em qualquer outra possiblidade, não consgue ver aquela criatura tão horrenda na sua frente. Você sente que está se tornando impiedoso, mas que está fazendo a coisa certa, você precisa impedir a propagação do medo e restaurar a Membrana!')
             print('')
             print('---= Combate =---')
             defesa = 13
@@ -298,8 +309,11 @@ while True:
 
             cap1 = False
             if pv > 0:
-                print('Vitória')
-                input('---= CAPÍTULO 2: EM BREVE =---')
+                time.sleep(1)
+                print('---= CONQUISTA: Um Agente em Ascenção =---')
+                time.sleep(2)
+                print('---= CAPÍTULO 2: EM BREVE =---')
+                time.sleep(1)
                 reset()
 
         elif dec1.lower() == 'esperar':
@@ -353,7 +367,11 @@ while True:
                         print(final)
                         reset()
                     else:
-                        print('Ao ver a foto, a senhora começa a chorar...')
+                        print('Quando você pergunta pra senhora sobre a foto, ele avança em sua direção...')
+                        time.sleep(1.5)
+                        print('Mas ao ver a reação da mãe, ele para, e apenas a observa.')
+                        time.sleep(1.5)
+                        print('Ela pega a foto da sua mão, e começa a chorar...')
                         time.sleep(1.5)
                         print('"Richard", ela diz, enquanto começa a aparecer um bebê na foto, no colo da mãe.')
                         time.sleep(1.5)
@@ -361,8 +379,11 @@ while True:
                         time.sleep(1.5)
                         print('No lugar do existido, aparece um homem. Richard havia voltado a existir!')
                         print('')
+                        time.sleep(1)
+                        print('---= CONQUISTA: O Homem que Existiu 2 Vezes =---')
                         time.sleep(2)
                         print('---= CAPÍTULO 2: EM BREVE =---')
+                        time.sleep(1)
                         reset()
                     cap1 = False
                     break
