@@ -75,7 +75,7 @@ def monstro(pv, acao):
 
 def ataque(pvM):
         d20 = random.randint(1, 20)
-        if d20 + atrB >= defesa:
+        if d20 + atrB >= defesa - atrB:
             dano = random.randint(1, dado) + atrB #4 11
             pvM -= dano
             if arma == 'adaga':
