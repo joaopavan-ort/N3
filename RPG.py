@@ -1,4 +1,4 @@
-#explicar conceitos do jogo, mostrar os valores do dado para o jogador
+# obs do salu: explicar conceitos do jogo, mostrar os valores do dado para o jogador
 
 # Importando Bibliotecas
 import random
